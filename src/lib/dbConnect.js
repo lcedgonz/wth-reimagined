@@ -25,13 +25,14 @@ async function dbConnect() {
     const mongoUri = await getMongoUri()
     console.log(mongoUri)
     
+    mongoose.set('strictQuery', false);
 
     cached.promise = mongoose.connect(mongoUri, opts).then((mongoose) => {
-      return mongoose
-    })
+      return mongoose;
+    });
   }
   cached.conn = await cached.promise
-  return cached.conn
+  return cached.conn;
 }
 
 export default dbConnect
